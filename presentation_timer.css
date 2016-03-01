@@ -1,0 +1,22 @@
+
+body
+{
+    margin: 10pt;
+}
+
+div.digi_timer
+{
+    font-size: 30pt;
+    font-family: monospace;
+    
+    background-color: lightblue;
+    
+    border-radius: 9pt;
+    border-style: solid;
+    border-color: black;
+    
+    margin: 8pt;
+    
+    display: inline;
+}
+
