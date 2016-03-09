@@ -1,26 +1,25 @@
 
 function Timer() {
-    var SecCounter = function (sec_total) {
+    var Timekeeper = function (sec_total) {
         var cur_total_sec, cur_sec, cur_min;
         
         cur_total_sec = sec_total;
         cur_sec = sec_total % 60;
         cur_min = (sec_total - cur_sec) / 60;
         
-        this.getTotalSec = function () {
-            return cur_total_sec;
-        };
-        
-        this.getAnalog = function() {
-            return cur_total_sec / sec_total;
-        };
-        
-        this.getSec = function() {
-            return cur_sec;
-        };
-        
-        this.getMin = function() {
-            return cur_min;
+        this.ctime = {
+            getTotalSec: function () {
+                return cur_total_sec;
+            }, 
+            getAnalog: function() {
+                return cur_total_sec / sec_total;
+            }, 
+            getSec: function() {
+                return cur_sec;
+            }, 
+            getMin: function() {
+                return cur_min;
+            }
         };
         
         this.m1sec = function() {
@@ -36,57 +35,62 @@ function Timer() {
             
             return false;
         };
-    }, sc;
+    };
     
-    sc = (function(args) {
+    var argParser = function(args) {
         var sec, min;
     
         if(args.length == 2) {
             sec = args[1];
             min = args[0];
-            return new SecCounter(min*60 + sec);
+            return new Timekeeper(min*60 + sec);
         }
         
         if(args.length == 1) {
             sec = args[0];
-            return new SecCounter(sec);
+            return new Timekeeper(sec);
         }
         
         if(args.length == 0) {
-            return new SecCounter(0);
+            return new Timekeeper(0);
         }
         
         throw Error('Usage: Timer(min: Integer, sec: Integer)\n       Timer(sec: Integer)\n      Timer()');
-    })(arguments);
+    };
     
-
-  var tick = function () {
-    if(pause !== null) {
-        pause.confirm();
+    var tkeeper;
+    
+    tkeeper = argParser(arguments);
+    
+    var tick = function () {
+        if(pause !== null) {
+            pause.confirm();
         
-        return;
-    }
+            return;
+        }
     
-    face_upd(sc);
-    if(sc.m1sec()) {
-        window.clearInterval(intervalID);
-        intervalID = null;
-    }
-  };
-  var intervalID, face_upd;
+        face_upd(tkeeper.ctime);
+    
+        if(tkeeper.m1sec()) {
+            window.clearInterval(intervalID);
+            intervalID = null;
+        }
+    };
+  
+    var intervalID, face_upd;
   // secound shift correction
-  var DoPauseNow = function () {
-      var timestamp = Date.now(), delay;
-      //var already_resumed = false;
+    var DoPauseNow = function () {
+        var timestamp = Date.now(), delay;
+        //var already_resumed = false;
       
-      this.confirm = function () {
-          delay = 1000 - (Date.now() - timestamp);
-          console.log('delay: ' + delay);
-          window.clearInterval(intervalID);
-          intervalID = null;
-          
-          return true;
-      };
+        this.confirm = function () {
+            delay = 1000 - (Date.now() - timestamp);
+            console.log('delay: ' + delay);
+            window.clearInterval(intervalID);
+            intervalID = null;
+            
+            return true;
+        };
       
       this.unPause = function () {
           if(delay === undefined) {
@@ -114,7 +118,7 @@ function Timer() {
 
   this.attachFace = function (face, label) {
 
-    face.update(sc);
+    face.update(tkeeper.ctime);
     if(face_upd === undefined) {
         face_upd = face.update;
     } else {

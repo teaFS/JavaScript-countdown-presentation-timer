@@ -20,3 +20,7 @@ div.digi_timer
     display: inline;
 }
 
+div.pause:after
+{
+    content: "\2590\A0\258C";
+}

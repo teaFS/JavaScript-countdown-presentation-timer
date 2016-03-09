@@ -1,5 +1,5 @@
 
-function Face(min_id, sec_id) {
+function DigitalFace(min_id, sec_id) {
   var min_tag = document.getElementById(min_id);
   var sec_tag = document.getElementById(sec_id);
 
