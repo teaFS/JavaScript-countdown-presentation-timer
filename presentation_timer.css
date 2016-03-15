@@ -4,23 +4,115 @@ body
     margin: 10pt;
 }
 
-div.digi_timer
+div.timer
 {
-    font-size: 30pt;
-    font-family: monospace;
-    
     background-color: lightblue;
     
     border-radius: 9pt;
     border-style: solid;
+    border-width: 2pt;
     border-color: black;
     
     margin: 8pt;
+    padding: 0px;
     
-    display: inline;
+    cursor: default;
+    
+    display: inline-block;
 }
 
-div.pause:after
+div.timer div.digi_display
 {
-    content: "\2590\A0\258C";
+    font-size: 30pt;
+    font-family: monospace;
+    text-align: center;
+    
+    margin: 10pt;
+}
+
+div.timer div.info
+{
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+
+    position: absolute;
+}
+
+div.timer div.analog_display_container
+{
+    background: green;
+    
+    height: 20pt;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.timer div.analog_display
+{
+    background: red;
+
+    height: 100%;
+    width: 100%;
+    
+    float: right;
+}
+
+div.timer div.controls
+{
+    display: inline-flex;
+}
+
+div.timer div.control
+{
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    
+    width: 20pt;
+    
+    border-style: solid;
+    border-color: black;
+    border-width: 1pt;
+    border-radius: 9pt;
+    
+    padding: 6pt;
+    margin: 6pt;
+    
+    display: inline-block;
+}
+
+div.timer div.control div.start:after
+{
+    content: "\25B6";
+}
+
+div.timer div.control div.pause
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+div.timer div.control div.pause:before
+{
+    content: "\275A";
+}
+
+div.timer div.control div.pause:after
+{
+    content: "\275A";
+}
+
+div.timer div.new
+{
+    display: inline-block;
+    font-size: 24pt;
+   
+    margin-top: auto;
+    margin-bottom: 0px;
+    margin-left: 60%;
+}
+
+div.timer div.new:after
+{
+    content: "\27F3";
 }

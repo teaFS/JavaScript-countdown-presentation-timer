@@ -6,10 +6,23 @@ function DigitalFace(min_id, sec_id) {
   this.update = function (time) {
     var sec;
     
-    min_tag.innerHTML = '' + time.getMin();
+    min_tag.innerHTML = '0' + time.getMin();
     sec_tag.innerHTML = '' + (((sec = time.getSec()) > 9) ? sec : '0' + sec);
     
   };
+}
+
+function BarFace() {
+    var bar_id = document.getElementById('bar_indicator');
+    var percentage = -1;
+    
+     this.update = function (time) {
+         var new_percentage = Math.round(time.getAnalog() * 100);
+         
+         if(percentage != new_percentage) {
+             bar_id.style.width = (percentage = new_percentage) + '%';
+         }
+     }
 }
 
 function PieFace() {

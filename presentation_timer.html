@@ -3,16 +3,32 @@
     <link rel="stylesheet" type="text/css" href="./presentation_timer.css"/>
     <title>Presentation timer</title>
 </head>
-    
+
 <body>
     
-    <div class="digi_timer">
-        <span class="min" id="digi_min">00</span>:<span class="sec" id="digi_sec">00</span>
+    <div class="timer">
+        <div class="digi_display">
+            <span class="min" id="digi_min">00</span>:<span class="sec" id="digi_sec">00</span>
+        </div>
+        
+        <div>
+            <div class="analog_display_container">
+                <div class="info">10</div>
+                <div class="analog_display" id="bar_indicator"></div>
+            </div>
+            
+            <div class="controls">
+            
+            <div class="control">
+                <div class="pause"></div>
+            </div>
+            
+            <div class="new"></div>
+            
+            </div>
+        </div>
+
     </div>
-    <div>
-        &#10074;&#10074; &#9658;
-    </div>
-    <div class='pause'></div>
     
     <script src="./timer.js"></script>
     <script src="./face.js"></script>
@@ -21,8 +37,10 @@
         
         t = new Timer(5, 0);
         digi_f = new DigitalFace('digi_min', 'digi_sec');
+        analog_f = new BarFace();
         
         t.attachFace(digi_f);
+        t.attachFace(analog_f);
         
         t.start();
     </script>

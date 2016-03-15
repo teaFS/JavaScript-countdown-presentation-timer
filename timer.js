@@ -115,7 +115,7 @@ function Timer() {
         faceupd(a, b);
     };
   };
-
+  
   this.attachFace = function (face, label) {
 
     face.update(tkeeper.ctime);
