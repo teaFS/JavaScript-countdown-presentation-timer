@@ -33,14 +33,14 @@
     <script src="./timer.js"></script>
     <script src="./face.js"></script>
     <script>
-        var dig_f, t;
+        var t, digital_f, analog_bar_f;
         
         t = new Timer(5, 0);
-        digi_f = new DigitalFace('digi_min', 'digi_sec');
-        analog_f = new BarFace();
+        digital_f = new DigitalFace('digi_min', 'digi_sec');
+        analog_bar_f = new AnalogBarFace();
         
-        t.attachFace(digi_f);
-        t.attachFace(analog_f);
+        t.attachFace(digital_f);
+        t.attachFace(analog_bar_f);
         
         t.start();
     </script>
